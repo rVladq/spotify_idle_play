@@ -1,0 +1,4 @@
+1. the player pauses after running the same script twice (either resume.py or go_idle.py) /
+perhaps start_resume(context), when given as parameter a context that is already being played is programmed to pause the player instead.
+
+2. also, there might be a logic error in the 'if' conditions, that leads to unwanted behaviour when running the same script twice
