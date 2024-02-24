@@ -2,3 +2,5 @@
 perhaps start_resume(context), when given as parameter a context that is already being played is programmed to pause the player instead.
 
 2. also, there might be a logic error in the 'if' conditions, that leads to unwanted behaviour when running the same script twice
+
+3. bugs when resuming to a context that is <artist> and not <album>

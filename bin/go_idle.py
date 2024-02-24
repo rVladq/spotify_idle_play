@@ -5,7 +5,6 @@ from utils import player
 def main():
 
 # save the current context if we can get it 
-    player.refresh_state()
     current_state = player.get_playback_state()
     if current_state is not None:
         current_state = player.extract_state_variables(current_state)
