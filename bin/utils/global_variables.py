@@ -3,8 +3,11 @@ import base64
 
 import requests
 
+from utils.IDLE_STATES import albums
 dotenv_file = dotenv.find_dotenv()
 dotenv.load_dotenv(dotenv_file)
+
+IDLE_ALBUMS= albums
 
 REDIRECT_URI = dotenv.get_key(dotenv_file, "REDIRECT_URI")
 CLIENT_ID = dotenv.get_key(dotenv_file, "CLIENT_ID")
@@ -13,6 +16,7 @@ DEVICE_ID = dotenv.get_key(dotenv_file, "DEVICE_ID")
 
 ACCESS_TOKEN = None
 REFRESH_TOKEN = None
+
 
 def load_tokens():
     global ACCESS_TOKEN, REFRESH_TOKEN
@@ -37,32 +41,35 @@ def check_token_validity():
         return 1
 
 
-def refresh_token():
-            credentials = f"{CLIENT_ID}:{CLIENT_SECRET}"
-            base64_credentials = base64.b64encode(credentials.encode('utf-8')).decode('utf-8')
+def refresh_tokens(force: bool = False):
+    if (check_token_validity() != 1) and not force:
+        return
+    else:
+        credentials = f"{CLIENT_ID}:{CLIENT_SECRET}"
+        base64_credentials = base64.b64encode(credentials.encode('utf-8')).decode('utf-8')
 
-            headers = {
-                "Authorization": f"Basic {base64_credentials}",
-                "Content-Type": "application/x-www-form-urlencoded",
-            }
+        headers = {
+            "Authorization": f"Basic {base64_credentials}",
+            "Content-Type": "application/x-www-form-urlencoded",
+        }
 
-            data = {
-                "grant_type": "refresh_token",
-                "refresh_token": REFRESH_TOKEN,
-            }
+        data = {
+            "grant_type": "refresh_token",
+            "refresh_token": REFRESH_TOKEN,
+        }
 
-            re = requests.post(
-                url="https://accounts.spotify.com/api/token",
-                headers=headers,
-                data=data,
-            ).json()
+        re = requests.post(
+            url="https://accounts.spotify.com/api/token",
+            headers=headers,
+            data=data,
+        ).json()
 
-            refresh = re.get('refresh_token')
+        refresh = re.get('refresh_token')
 
-            dotenv.set_key(dotenv_file, "ACCESS_TOKEN", re.get('access_token'))
-            dotenv.set_key(dotenv_file, "REFRESH_TOKEN", REFRESH_TOKEN if refresh is None else refresh)
+        dotenv.set_key(dotenv_file, "ACCESS_TOKEN", re.get('access_token'))
+        dotenv.set_key(dotenv_file, "REFRESH_TOKEN", REFRESH_TOKEN if refresh is None else refresh)
 
-            load_tokens()
+        load_tokens()
 
 
 def get_current_device():
@@ -75,11 +82,13 @@ def get_current_device():
     ).json()
 
     global DEVICE_ID
-    DEVICE_ID = re['devices'][0]["id"]
+    if re['devices']:
+        DEVICE_ID = re['devices'][0]["id"]
+        dotenv.set_key(dotenv_file, "DEVICE_ID", DEVICE_ID)
 
 
 load_tokens()
-if check_token_validity() == 1:
-    refresh_token()
+refresh_tokens()
+
 
 get_current_device()

@@ -1,4 +1,3 @@
-D:
-cd spotipy/bin
+cd ../
 
 "../venv/Scripts/python.exe" go_idle.py

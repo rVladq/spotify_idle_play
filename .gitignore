@@ -1,6 +1,7 @@
 venv
 __pycache__
 bin/data/PLAY_RESUME.json
-bin/data/TOKENS.json
-bin/TOKENS.json
 .env
+.debris
+.idea
+Rubbish
