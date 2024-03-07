@@ -7,7 +7,7 @@ from utils.IDLE_STATES import albums
 dotenv_file = dotenv.find_dotenv()
 dotenv.load_dotenv(dotenv_file)
 
-IDLE_ALBUMS= albums
+IDLE_ALBUMS = albums
 
 REDIRECT_URI = dotenv.get_key(dotenv_file, "REDIRECT_URI")
 CLIENT_ID = dotenv.get_key(dotenv_file, "CLIENT_ID")

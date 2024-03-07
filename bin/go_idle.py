@@ -5,7 +5,7 @@ from utils import player
 
 def main():
 
-# save the current context if we can get it
+    # save the current context if we can get it
     current_state = player.get_playback_state()
     if current_state is not None:
         current_state = player.extract_state_variables(current_state)
@@ -18,7 +18,7 @@ def main():
             with open('./data/PLAY_RESUME.JSON', 'w') as file:
                 json.dump(current_state, file)
 
-# execute the idling instructions
+    # execute the idling instructions
     with open('./data/PLAY_IDLE.json', 'r') as file:
         state_to_play = json.load(file)
 

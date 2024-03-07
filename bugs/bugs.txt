@@ -1,3 +1,25 @@
-1. bug when resuming to a context that is <artist> and not <album>
-2. in __main__.py tokens don't reset when computer is in sleep mode
-3. something about DEVICE_ID
+# The bugs are listed from lower to higher priority.
+
+- something about DEVICE_ID is wrong (when having spotify open on 2 devices at the same time) (Error: 502 Bad Gateway from calls like player.start_resume())
+
+- should verify if the player is idle in a different way. 
+    Current method doesn't verify is the player is on pause or not, and just looks at the current album and if volume is muted (see go_idle.py line 13),
+        so if you pause in idle_state the go_idle.py script will not resume playback, it will only save the state.
+    !From a different perspective this is a good thing because you can stop playback if you want to, without ending the script.
+
+- bug when resuming.
+    resume.py doesn't resume to the correct (last played) song.
+    The reason is that the API doesn't provide the place(number) of the song in your playlist. It gives the place of the song in the album it is provided from.
+        (e.g. playing the 2nd song on your personal playlist, the song may be the 6th song on an album, then resume.py will play the 6th song in your personal playlist when run)
+    Might be able to solve this by taking a closer look at the API, OR 
+    More certainly with a Brute Force method like:
+        fetching all the songs from the personal playlist in order, then finding the right song by searching through their names,
+        (consider that when we go idle we save the name of the last song instead of it's place), we find the name match so we know the place of the song (because they were fetched in order),
+        and we can use player.resume() as before.
+
+- bug when resuming to contexts that are not <album>, like: <artist> or when playing from homepage
+
+- in __main__.py tokens don't reset when computer is in sleep mode
+    Should use timestamps instead of decrementing on every iteration.
+
+- in __main__.py should switch from os.system to psutil, so it works for all systems
