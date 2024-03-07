@@ -4,29 +4,29 @@ from utils import player
 from utils import global_variables
 import go_idle
 
-iteration_pause = 60  # seconds
+seconds_until_nextIteration = 60  # seconds
 
 is_spotify_open = os.system("TASKLIST | FINDSTR Spotify.exe")
 
 if is_spotify_open != 0:
     os.system("start spotify")
-    time.sleep(10)
     print('Waiting for spotify to open')
+    time.sleep(10)
 else:
     print("Spotify is already open.")
 
-# Tokens expire every hour, so we'll have to reset them
+# Tokens expire every hour, so we'll have to refresh them
 global_variables.refresh_tokens(force=True)  # Initial reset when the script starts
-time_until_refresh = 55  # Then every other X minutes
-countdown_until_refresh = time_until_refresh
+minutes_until_refresh = 55  # Then every other X minutes
+countdown_until_refresh = minutes_until_refresh
 
 while True:
 
     if countdown_until_refresh <= 0:
         global_variables.refresh_tokens(True)
-        countdown_until_refresh = time_until_refresh
+        countdown_until_refresh = minutes_until_refresh
 
-    print('Checking if it\'s time to idle!...')
+    print('Checking if it\'s time to idle...')
     
     current_state = player.get_playback_state()
     
@@ -44,5 +44,5 @@ while True:
             print('Updated the idle_state.')
     
     # pausing
-    time.sleep(iteration_pause)
-    countdown_until_refresh = countdown_until_refresh - iteration_pause/60
+    time.sleep(seconds_until_nextIteration)
+    countdown_until_refresh = countdown_until_refresh - seconds_until_nextIteration/60

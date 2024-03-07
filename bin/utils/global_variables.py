@@ -84,6 +84,7 @@ def get_current_device():
     global DEVICE_ID
     if re['devices']:
         DEVICE_ID = re['devices'][0]["id"]
+        print(re)
         dotenv.set_key(dotenv_file, "DEVICE_ID", DEVICE_ID)
 
 
