@@ -4,6 +4,7 @@ from utils import player
 from utils import global_variables
 import go_idle
 
+
 seconds_until_nextIteration = 60  # seconds
 
 is_spotify_open = None
@@ -22,14 +23,16 @@ else:
 
 # Tokens expire every hour, so we'll have to refresh them
 global_variables.refresh_tokens(force=True)  # Initial reset when the script starts
+started_at = time.monotonic() # seconds
 minutes_until_refresh = 55  # Then every other X minutes
-countdown_until_refresh = minutes_until_refresh
 
 while True:
 
-    if countdown_until_refresh <= 0:
+    # Checking to see if the set amount of minutes passed
+    current_time = time.monotonic()
+    if (current_time - started_at)/60 >= minutes_until_refresh:
         global_variables.refresh_tokens(True)
-        countdown_until_refresh = minutes_until_refresh
+        started_at = current_time # setting this to check for the next refresh
 
     print('Checking if it\'s time to idle...')
     
@@ -50,4 +53,3 @@ while True:
     
     # pausing
     time.sleep(seconds_until_nextIteration)
-    countdown_until_refresh = countdown_until_refresh - seconds_until_nextIteration/60

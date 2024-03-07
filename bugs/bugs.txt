@@ -17,7 +17,5 @@
         (consider that when we go idle we save the name of the last song instead of it's place), we find the name match so we know the place of the song (because they were fetched in order),
         and we can use player.resume() as before.
 
-- bug when resuming to contexts that are not <album>, like: <artist> or when playing from homepage
-
-- in __main__.py tokens don't reset when computer is in sleep mode
-    Should use timestamps instead of decrementing on every iteration.
+- bug when resuming.
+    Error when resuming to contexts that are not <album>, like: <artist> or when playing from homepage.

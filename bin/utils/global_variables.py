@@ -70,6 +70,7 @@ def refresh_tokens(force: bool = False):
         dotenv.set_key(dotenv_file, "REFRESH_TOKEN", REFRESH_TOKEN if refresh is None else refresh)
 
         load_tokens()
+        print('Tokens have been reset.')
 
 
 def get_current_device():
