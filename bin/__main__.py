@@ -1,15 +1,20 @@
 import time
-import os
+import psutil
 from utils import player
 from utils import global_variables
 import go_idle
 
 seconds_until_nextIteration = 60  # seconds
 
-is_spotify_open = os.system("TASKLIST | FINDSTR Spotify.exe")
+is_spotify_open = None
 
-if is_spotify_open != 0:
-    os.system("start spotify")
+# Checking to see if spotify is open
+for proc in psutil.process_iter(['pid', 'name']):
+    if 'Spotify' in proc.info['name']:
+        is_spotify_open = True
+
+if is_spotify_open is not True:
+    psutil.Popen(["spotify"])
     print('Waiting for spotify to open')
     time.sleep(10)
 else:

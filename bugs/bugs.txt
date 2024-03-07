@@ -21,5 +21,3 @@
 
 - in __main__.py tokens don't reset when computer is in sleep mode
     Should use timestamps instead of decrementing on every iteration.
-
-- in __main__.py should switch from os.system to psutil, so it works for all systems
