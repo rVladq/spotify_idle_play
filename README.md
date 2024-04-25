@@ -1,4 +1,4 @@
-# Play music in the background for [Discord](https://discord.com/) activity display.
+# Automatically play music in the background to be displayed on [Discord](https://discord.com/)'s activity bar.
 
 
 
@@ -6,7 +6,8 @@
 
     
 
-This app detects if the playback has been paused for more than 10 minutes and starts playing an album of your choice on **mute** to be displayed in the activity bar on discord.    
+This app detects if the playback has been paused for more than 10 minutes and starts playing an album of your choice on **mute**. 
+
 Spotify *may* or may *not* count muted streams toward spotify **wrapped**.
 
 ## Config
