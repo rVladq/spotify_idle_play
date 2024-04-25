@@ -83,7 +83,7 @@ def get_current_device():
     ).json()
 
     global DEVICE_ID
-    if re['devices']:
+    if re['devices'] and (DEVICE_ID == None or DEVICE_ID == ''):
         DEVICE_ID = re['devices'][0]["id"]
         print(re)
         dotenv.set_key(dotenv_file, "DEVICE_ID", DEVICE_ID)
