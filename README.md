@@ -12,7 +12,7 @@ Spotify *may* or may *not* count muted streams toward spotify **wrapped**.
 
 ## Config
 
-This app uses Spotify's **Web API**. This app is **not** hosted, so you will have to configure and run it locally.
+This app is built in [Python](https://www.python.org/) and uses  Spotify's **Web API**. This app is **not** hosted, so you will have to configure and run it locally.
 - **First**, clone the repository, then copy-paste everything from `.env.example` into a new `.env` file.
 - `python -m venv venv` create a virtual environment folder named venv.
 - Activate the virtual environment:
