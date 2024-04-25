@@ -62,8 +62,8 @@ def get_playback_state():
     if response.status_code == 200:
         return response.json()
 
-    else:
-        print(f"get_playback_state: Error: {response.status_code}, {response.text}")
+    # else:
+    #     print(f"get_playback_state: Error: {response.status_code}, {response.text}")
 
 
 def start_resume(state):
