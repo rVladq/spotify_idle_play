@@ -1,4 +1,4 @@
-# Automatically starts music in the background to be displayed as activity on [Discord](https://discord.com/). **(you need to link spotify to discord)**
+# Automatically start music in the background to be displayed as activity on [Discord](https://discord.com/).
 
 
 
