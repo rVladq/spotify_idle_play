@@ -12,8 +12,9 @@ Spotify *may* or may *not* count muted streams toward spotify **wrapped**.
 
 ## Config
 
-This app is built in [Python](https://www.python.org/) and uses  Spotify's **Web API**. This app is **not** hosted, so you will have to configure and run it locally.
-- **First**, clone the repository, then copy-paste everything from `.env.example` into a new `.env` file.
+This app is built in [Python](https://www.python.org/) and uses  Spotify's **Web API**.  
+This app is **not** hosted, so you will have to configure and run it locally.
+- **First**, clone the repository. Then, copy-paste everything from `.env.example` into a new `.env` file.
 - `python -m venv venv` create a virtual environment folder named venv.
 - Activate the virtual environment:
   - Windows: `.\venv\Scripts\activate`
@@ -31,21 +32,26 @@ This app is built in [Python](https://www.python.org/) and uses  Spotify's **Web
 - Now that spotify is running and playing music, run `python ./bin/__main__.py`.
 - You should see `'Checking if it's time to idle...'` written in the console.
 
+##
+
 ### Adding idle albums:
 `./bin/data/PLAY_IDLE.json` is what the script uses to start the playback from the last position.  
-`./bin/utils/IDLE_STATES.json` is an array where we store the **albums**.
+`./bin/utils/IDLE_STATES.json` is an array where we store the **albums**.  
 `./bin/utils/GET_URI.py` is a script that returns an **albums**'s URI.
 
-We need to manually configure `PLAY_IDLE.json` and `IDLE_STATES.json`.  
+- We need to manually configure `PLAY_IDLE.json` and `IDLE_STATES.json`.  
+  - Start playing the **album**, then run `python ./utils/GET_URI.py`. The URI should be returned in console. **Copy** it.
+  - **Paste** it in `./utils/IDLE_STATES`, as a member of the array. 
 
-  - - Start playing the **album**, then run `python ./utils/GET_URI.py`. The URI should be returned in console. **Copy** it.
-  - - **Paste** it in `./utils/IDLE_STATES`, as a member of the array. 
- 
+##
+
 ### Switching between the idle albums: 
 - In order to default an album all you need to do is let it play on **mute** in the background for 1 minute. 
 - Then a message in the console should say: `Updated the idle_state.` 
 
-Environment variables: (also check `.env.example`)
+##
+
+### Environment variables: (also check `.env.example`)
 
 | Variable               | Description                        |
 |------------------------|------------------------------------|
