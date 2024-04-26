@@ -1,6 +1,6 @@
-# Automatically start music in the background to be displayed as activity on [Discord](https://discord.com/).
+# Automatically start music in the background to be displayed as activity on [Discord](https://discord.com/)
 
-
+[](![image](https://github.com/rVladq/spotify_idle_play/assets/142915917/966499ef-886f-4fde-8aea-a5938daa9d6e)
 
 ## Requires **spotify premium**!
 
