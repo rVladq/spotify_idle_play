@@ -38,9 +38,9 @@ This app is built in [Python](https://www.python.org/) and uses  Spotify's **Web
 
 We need to manually configure `PLAY_IDLE.json` and `IDLE_STATES.json`.  
 
-**Steps:**
-- start playing the **album**, then run `python ./utils/GET_URI.py`. The URI should be returned in console. **Copy** it.
-- **Paste** it in `./utils/IDLE_STATES`, as a member of the array.  
+- **Steps:**
+  - start playing the **album**, then run `python ./utils/GET_URI.py`. The URI should be returned in console. **Copy** it.
+  - **Paste** it in `./utils/IDLE_STATES`, as a member of the array.  
 ### Switching between the idle albums: 
 - In order to default an album all you need to do is let it play on **mute** in the background for 1 minute. 
 - Then a message in the console should say: `Updated the idle_state.` 
