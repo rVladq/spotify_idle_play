@@ -1,4 +1,4 @@
-# Automatically start music in the background to be displayed as activity on [Discord](https://discord.com/)
+## Starts music in the background automatically to be displayed as activity on [Discord](https://discord.com/)
 
 ![image](https://github.com/rVladq/spotify_idle_play/assets/142915917/966499ef-886f-4fde-8aea-a5938daa9d6e)
 
@@ -14,8 +14,9 @@ Spotify *may* or may *not* count muted streams toward spotify **wrapped**.
 
 This app is built in [Python](https://www.python.org/) and uses  Spotify's **Web API**.  
 This app is **not** hosted, so you will have to configure and run it locally.
-- **First**, clone the repository. Then, copy-paste everything from `.env.example` into a new `.env` file.
-- `python -m venv venv` create a virtual environment folder named venv.
+- Clone the repository. 
+- Copy-paste from `.env.example` into a new `.env` file.
+- `python -m venv venv` creates a virtual environment folder named venv.
 - Activate the virtual environment:
   - Windows: `.\venv\Scripts\activate`
   - Linux: `source ./venv/bin/activate`
@@ -28,9 +29,8 @@ This app is **not** hosted, so you will have to configure and run it locally.
   - `TOKEN` and `REFRESH_TOKEN` should now have been automatically set inside `.env`.
   - `CTRL`+`C` in the console to stop the server.
 - **Lastly**, before running `python ./bin/__main__.py` you need to have spotify running and **playing** music.
-  - This is only required so that `DEVICE_ID` is set successfully in `.env`, and is only required on the **first** run.
-- Now that spotify is running and playing music, run `python ./bin/__main__.py`.
-- You should see `'Checking if it's time to idle...'` written in the console.
+  - This way, `DEVICE_ID` is set automatically in `.env`.
+- `python ./bin/__main__.py`.
 
 ##
 
